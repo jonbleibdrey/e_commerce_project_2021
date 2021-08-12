@@ -1,5 +1,6 @@
 import React from 'react'
 import { Products, Navbar} from './components'
+import { commerce } from './lib/commerce'
 
 const App = () => {
     return (
