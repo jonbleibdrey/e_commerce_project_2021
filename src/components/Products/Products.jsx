@@ -5,8 +5,8 @@ import Product from "./Product/Product"
 
 
 const products = [
-    {id: 1, name:"Shoes", description: "Running shoes", price: "$5"},
-    {id: 2, name:"Macbook", description: "Apple Macbook", price: "$100"},
+    {id: 1, name:"Shoes", description: "Running shoes", price: "$5", image:"https://media.kohlsimg.com/is/image/kohls/3798326_Gray_Platinum?wid=600&hei=600&op_sharpen=1"},
+    {id: 2, name:"Macbook", description: "Apple Macbook", price: "$100", image:"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/rfb-macbook-air-gold-select-201902?wid=2000&hei=2000&fmt=jpeg&qlt=80&.v=1548454547923"},
 ]
 
 const Products = () => {
