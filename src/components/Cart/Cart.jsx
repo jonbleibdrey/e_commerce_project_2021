@@ -18,7 +18,7 @@ const Cart = ({ cart }) => {
   const FilledCart = () => (
     <>
       <Grid container spacing={3}>
-        {cart.line_items.map((item) => (
+        {cart.line_items && cart.line_items.map((item) => (
           <Grid item xs={12} sm={4} key={item.id}>
             <div>{item.name}</div>
           </Grid>
@@ -26,7 +26,7 @@ const Cart = ({ cart }) => {
       </Grid>
       <div className={classes.cardDetails}>
         <Typography variant="h4">
-          Subtotal: {cart.subtotal.formatted_with_symbol}
+          Subtotal: {cart.subtotal && cart.subtotal.formatted_with_symbol}
         </Typography>
         <div>
           <Button
@@ -60,7 +60,7 @@ const Cart = ({ cart }) => {
       <Typography className={classes.title} variant="h3">
         Your Shopping Cart
       </Typography>
-      { cart && cart.line_items.length === 0 ? <EmptyCart/> : <FilledCart />}
+      {cart.line_items && cart.line_items.length === 0 ? <EmptyCart/> : <FilledCart/>}
     </Container>
   );
 };
