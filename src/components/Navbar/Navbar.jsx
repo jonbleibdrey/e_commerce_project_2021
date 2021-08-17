@@ -16,7 +16,7 @@ import { Link, useLocation } from "react-router-dom";
 const Navbar = ({ totalItems }) => {
   const classes = useStyles();
   const location = useLocation();
-  
+
   return (
     <>
       <AppBar position="fixed" className={classes.appBar} color="inherit">
@@ -38,21 +38,19 @@ const Navbar = ({ totalItems }) => {
           </Typography>
           <div className={classes.grow} />
           {location.pathname === "/" && (
-                     <div className={classes.button}>
-                     <IconButton
-                       component={Link}
-                       to="/cart"
-                       aria-label="Show cart items"
-                       color="inherit"
-                     >
-                       <Badge badgeContent={totalItems} color="secondary">
-                         <ShoppingCart />
-                       </Badge>
-                     </IconButton>
-                   </div>
-
+            <div className={classes.button}>
+              <IconButton
+                component={Link}
+                to="/cart"
+                aria-label="Show cart items"
+                color="inherit"
+              >
+                <Badge badgeContent={totalItems} color="secondary">
+                  <ShoppingCart />
+                </Badge>
+              </IconButton>
+            </div>
           )}
-   
         </Toolbar>
       </AppBar>
     </>
