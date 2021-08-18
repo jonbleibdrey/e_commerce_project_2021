@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Paper,
   Stepper,
@@ -10,14 +10,34 @@ import {
   Button,
 } from "@material-ui/core";
 import useStyles from "./styles";
+import { commerce } from "../../../lib/commerce";
 import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
 
 const steps = ["Shipping address", "Payment details"];
 
-const Checkout = () => {
+const Checkout = ({ cart }) => {
   const [activeStep, setActiveStep] = useState(0);
+  const [checkoutToken, setCheckoutToken] = useState(null);
   const classes = useStyles();
+
+  useEffect(() => {
+    const generateToken = async () => {
+      try {
+        const token = await commerce.checkout.generateToken(cart.id, {
+          type: "cart",
+        })
+        
+        console.log("token",token);
+
+        setCheckoutToken(token);
+      } catch (error) {
+          console.log("Your error: ",error)
+      }
+    };
+
+    generateToken();
+  }, []);
 
   const Confirmation = () => <div>confirmation</div>;
 
@@ -31,7 +51,7 @@ const Checkout = () => {
           <Typography variant="h4" align="center">
             Checkout
           </Typography>
-          <Stepper activeStep={0} className={classes.stepper}>
+          <Stepper activeStep={activeStep} className={classes.stepper}>
             {steps.map((step) => (
               <Step key={step}>
                 <StepLabel>{step}</StepLabel>
