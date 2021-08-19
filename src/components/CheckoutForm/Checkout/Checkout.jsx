@@ -26,22 +26,25 @@ const Checkout = ({ cart }) => {
       try {
         const token = await commerce.checkout.generateToken(cart.id, {
           type: "cart",
-        })
-        
-        console.log("token",token);
-
+        });
+        console.log(token);
         setCheckoutToken(token);
       } catch (error) {
-          console.log("Your error: ",error)
+        console.log("Your error: ", error);
       }
     };
 
     generateToken();
-  }, []);
+  }, [cart]);
 
   const Confirmation = () => <div>confirmation</div>;
 
-  const Form = () => (activeStep === 0 ? <AddressForm /> : <PaymentForm />);
+  const Form = () =>
+    activeStep === 0 ? (
+      <AddressForm checkoutToken={checkoutToken} />
+    ) : (
+      <PaymentForm />
+    );
 
   return (
     <>
@@ -58,7 +61,7 @@ const Checkout = ({ cart }) => {
               </Step>
             ))}
           </Stepper>
-          {activeStep === steps.length ? <Confirmation /> : <Form />}
+          {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />}
         </Paper>
       </main>
     </>
