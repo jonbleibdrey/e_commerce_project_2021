@@ -17,6 +17,7 @@ const PaymentForm = ({
   backStep,
   onCaptureCheckout,
 }) => {
+  console.log("shipping data: ", shippingData)
   const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault();
 
